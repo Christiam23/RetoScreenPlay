@@ -32,15 +32,14 @@ public class BookFlightStepDefinitions {
     }
 
     @When("^Cristian books the cheapest flight from Medellin to Bogota$")
-    public void cristian_books_the_cheapest_flight_from_Medellin_to_Bogota() {
+    public void getCheapestFlight() {
         theActorInTheSpotlight().attemptsTo(
                 SearchFlight.withThisData(from("Medellin").to("Bogota").oneWay().forTomorrow()),
                 SetReserve.selectTheCheapest(new FlightsList(), new ModalReserve(), new SummaryReserve()));
     }
 
     @Then("^Cristian verifies that the value of the initial flight is equal to the end$")
-    public void cristian_verifies_that_the_initial_value_of_the_flight_is_equal_to_the_value_shown_at_the_end_of_the_transaction() {
-
+    public void checkPrice() {
         theActorInTheSpotlight().should(seeThat(checkFinalPrice()));
 
     }
